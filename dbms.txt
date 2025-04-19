@@ -36,6 +36,10 @@ INSERT INTO student_details (id, phone, email) VALUES
 (3, '8765652109', 'rahul@email.com'),
 (4, '8765482109', 'priya@email.com');
 
+-- Alter table
+ALTER TABLE student
+ADD roll no INT NOT NULL;
+
 
 -- See all data
 SELECT * FROM student;
@@ -57,12 +61,12 @@ SELECT LOWER(name) AS LowerName FROM student;
 -- Total marks of all students
 SELECT SUM(marks) AS TotalMarks FROM student;
 
--- Show names and marks sorted in ascending order
+-- order by
 SELECT name, marks
 FROM student
 ORDER BY marks ASC;
 
--- Average marks by city
+-- Group by
 SELECT city, AVG(marks) AS AverageMarks
 FROM student
 GROUP BY city;
