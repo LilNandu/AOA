@@ -1,0 +1,103 @@
+CREATE TABLE student (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    marks INT,
+    city VARCHAR(50)
+);
+
+-- Insert Adarsh and Sonali into student table
+INSERT INTO student (id, name, marks, city) VALUES
+(1, 'Adarsh', 92, 'mumbai'),
+(2, 'Sonali', 100, 'konkan');
+
+
+CREATE TABLE student2 (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    marks INT,
+    city VARCHAR(50)
+);
+
+-- Insert some data
+INSERT INTO student2 (id, name, marks, city) VALUES
+(3, 'Rahul', 85, 'pune'),
+(4, 'Priya', 90, 'delhi');
+
+CREATE TABLE student_details (
+    id INT PRIMARY KEY,
+    phone VARCHAR(20),
+    email VARCHAR(50)
+);
+
+-- Insert some data
+INSERT INTO student_details (id, phone, email) VALUES
+(1, '9876543210', 'adarsh@email.com'),
+(2, '8765432109', 'sona@email.com'),
+(3, '8765652109', 'rahul@email.com'),
+(4, '8765482109', 'priya@email.com');
+
+
+-- See all data
+SELECT * FROM student;
+
+-- Update Sonali to Sona
+UPDATE student
+SET name = 'Sona'
+WHERE name = 'Sonali';
+
+-- See updated data
+SELECT * FROM student;
+
+-- Show names in UPPERCASE
+SELECT UPPER(name) AS UPPERNAME FROM student;
+
+-- Show names in lowercase
+SELECT LOWER(name) AS LowerName FROM student;
+
+-- Total marks of all students
+SELECT SUM(marks) AS TotalMarks FROM student;
+
+-- Show names and marks sorted in ascending order
+SELECT name, marks
+FROM student
+ORDER BY marks ASC;
+
+-- Average marks by city
+SELECT city, AVG(marks) AS AverageMarks
+FROM student
+GROUP BY city;
+
+-- Having clause
+SELECT city, AVG(marks) AS AverageMarks
+FROM student
+GROUP BY city
+HAVING AVG(marks) > 95;
+
+
+-- All clause 
+SELECT city, AVG(marks) AS AverageMarks
+FROM student
+GROUP BY city
+HAVING AVG(marks) > 80
+ORDER BY AverageMarks DESC;
+
+
+-- union
+SELECT name, city, marks FROM student
+UNION
+SELECT name, city, marks FROM student2;
+
+
+-- Inner Join
+SELECT s.id, s.name, s.city, d.phone, d.email
+FROM student s
+INNER JOIN student_details d
+ON s.id = d.id;
+
+
+
+-- Right Join
+SELECT s.id, s.name, s.city, d.phone, d.email
+FROM student s
+RIGHT JOIN student_details d
+ON s.id = d.id;
